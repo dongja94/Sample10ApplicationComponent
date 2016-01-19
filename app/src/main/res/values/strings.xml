@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SampleApplicationComponent</string>
+    <string name="main_activity">Main Activity</string>
+    <string name="other_activity">Other Activity</string>
+</resources>
