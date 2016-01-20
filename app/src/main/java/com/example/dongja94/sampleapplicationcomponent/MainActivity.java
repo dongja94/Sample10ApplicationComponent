@@ -24,7 +24,16 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String message = inputView.getText().toString();
                 Intent intent = new Intent(MainActivity.this, OtherActivity.class);
-                intent.putExtra(OtherActivity.EXTRA_MESSAGE, message);
+                Person p = new Person();
+                p.message = message;
+                p.name = "ysi";
+                p.age = 42;
+
+                intent.putExtra(OtherActivity.EXTRA_PERSON, p);
+//                intent.putExtra(OtherActivity.EXTRA_MESSAGE, message);
+//                intent.putExtra(OtherActivity.EXTRA_NAME, "ysi");
+//                intent.putExtra(OtherActivity.EXTRA_AGE, 42);
+
                 startActivityForResult(intent, REQUEST_CODE_OTHER);
             }
         });

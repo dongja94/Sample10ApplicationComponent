@@ -11,9 +11,12 @@ import android.widget.TextView;
 
 public class OtherActivity extends AppCompatActivity {
 
+    public static final String EXTRA_PERSON = "person";
     TextView messageView;
     EditText resultView;
     public static final String EXTRA_MESSAGE = "message";
+    public static final String EXTRA_NAME = "name";
+    public static final String EXTRA_AGE = "age";
     public static final String RESULT_MESSAGE = "result";
 
     @Override
@@ -25,9 +28,15 @@ public class OtherActivity extends AppCompatActivity {
         resultView = (EditText)findViewById(R.id.edit_result);
 
         Intent intent = getIntent();
-        String message = intent.getStringExtra(EXTRA_MESSAGE);
+//        String message = intent.getStringExtra(EXTRA_MESSAGE);
+//        String name = intent.getStringExtra(EXTRA_NAME);
+//        int age = intent.getIntExtra(EXTRA_AGE, 0);
 
-        messageView.setText(message);
+//        Person p = (Person)intent.getSerializableExtra(EXTRA_PERSON);
+
+        Person p = intent.getParcelableExtra(EXTRA_PERSON);
+
+        messageView.setText(p.message);
 
         Button btn = (Button)findViewById(R.id.btn_finish);
         btn.setOnClickListener(new View.OnClickListener() {
