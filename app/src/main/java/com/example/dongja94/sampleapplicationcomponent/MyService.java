@@ -3,6 +3,7 @@ package com.example.dongja94.sampleapplicationcomponent;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
+import android.os.RemoteException;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -13,9 +14,21 @@ public class MyService extends Service {
 
     }
 
+    class MyServiceBinder extends IMyService.Stub {
+        @Override
+        public int getCount() throws RemoteException {
+            return mCount;
+        }
+    }
+
+    MyServiceBinder mBinder;
+
     @Override
     public IBinder onBind(Intent intent) {
-        throw new UnsupportedOperationException("Not yet implemented");
+        if (mBinder == null) {
+            mBinder = new MyServiceBinder();
+        }
+        return mBinder;
     }
 
     int mCount = 0;
@@ -51,7 +64,7 @@ public class MyService extends Service {
         } else {
             Log.i(TAG, "restart service...");
         }
-        return Service.START_STICKY;
+        return Service.START_NOT_STICKY;
     }
 
     @Override
